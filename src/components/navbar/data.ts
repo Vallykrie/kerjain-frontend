@@ -1,11 +1,10 @@
 export interface NavLink {
-    href: string;
-    title: string;
-  }
-  
-  export const navLinks: NavLink[] = [
-    { href: "/", title: "Home" },
-    { href: "/about", title: "About" },
-    { href: "/services", title: "Services" },
-    { href: "/contact", title: "Contact" },
-  ];
+  href: string;
+  title: string;
+}
+
+export const navLinks: NavLink[] = [
+  { href: "/pekerjaan", title: "Pekerjaan" },
+  { href: "/komunitas", title: "Komunitas" },
+  { href: "/program", title: "Program" },
+];

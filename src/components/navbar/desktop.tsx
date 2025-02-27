@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import React from "react";
 import Link from "next/link";
-import { navLinks} from "./data";
+import { navLinks } from "./data";
 
-const DesktopNavLinks: React.FC = () => {
+const DesktopNav: React.FC = () => {
   const linkClass = "hover:drop-shadow-[0_0px_10px_rgba(255,255,255,1)]";
 
   return (
@@ -18,4 +18,4 @@ const DesktopNavLinks: React.FC = () => {
   );
 };
 
-export default DesktopNavLinks;
+export default DesktopNav;

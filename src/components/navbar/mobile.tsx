@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
@@ -46,9 +46,7 @@ const MobileNav: React.FC = () => {
                       }
                       href={route.href}
                     >
-                      <span className="flex gap-1 text-lg">
-                        {route.title}
-                      </span>
+                      <span className="flex gap-1 text-lg">{route.title}</span>
                     </Link>
                   </motion.li>
                 );
