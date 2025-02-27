@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "public/Login.png";
+import Login from "public/login.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "../ui/input";
