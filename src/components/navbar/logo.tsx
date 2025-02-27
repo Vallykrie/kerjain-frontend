@@ -10,12 +10,14 @@ const Logo: React.FC = () => {
       <Image
         src="/logo1.png"
         alt="logo"
-        width={100}
-        height={50}
-        className="max-h-10 max-md:max-h-7 mt-3"
+        width={140}
+        height={76}
+        className="max-md:max-h-9 max-md:max-w-16"
       />  
     </Link>
   );
 };
 
 export default Logo;
+
+// max-h-10 max-md:max-h-7 mt-3

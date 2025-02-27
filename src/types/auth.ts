@@ -32,7 +32,7 @@ export interface Credentials {
   }
   
   export interface SignInFormInput {
-    username: string;
+    email: string;
     password: string;
   }
   
