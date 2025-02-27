@@ -1,28 +1,33 @@
-import * as z from "zod"
+import { z } from 'zod';
+import { SignInFormInput, SignUpFormInput } from '@/types/auth';
 
-export const loginSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-})
+export const signInSchema = z.object({
+  username: z.string().min(3, {
+    message: "Username must be at least 3 characters long",
+  }),
+  password: z.string().min(6, {
+    message: "Password must be at least 6 characters long",
+  }),
+}) satisfies z.ZodType<SignInFormInput>;
 
-export const signupSchema = z.object({
-  fullName: z.string().min(2, "Full name must be at least 2 characters"),
-  username: z
-    .string()
-    .min(3, "Username must be at least 3 characters")
-    .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers and underscores"),
-  email: z.string().email("Invalid email address"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .regex(/.*[A-Z].*/, "Password must contain at least one uppercase letter")
-    .regex(/.*[a-z].*/, "Password must contain at least one lowercase letter")
-    .regex(/.*\d.*/, "Password must contain at least one number"),
-  confirmPassword: z.string()
+export const signUpSchema = z.object({
+  username: z.string().min(3, {
+    message: "Username must be at least 3 characters long",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
+  password: z.string().min(6, {
+    message: "Password must be at least 6 characters long",
+  }),
+  confirmPassword: z.string().min(6, {
+    message: "Confirm password must be at least 6 characters long",
+  }),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
+  message: "Passwords do not match",
   path: ["confirmPassword"],
-})
+}) satisfies z.ZodType<SignUpFormInput>;
 
-export type LoginInput = z.infer<typeof loginSchema>
-export type SignupInput = z.infer<typeof signupSchema>
+// Infer types from schemas
+export type SignInSchemaType = z.infer<typeof signInSchema>;
+export type SignUpSchemaType = z.infer<typeof signUpSchema>;
