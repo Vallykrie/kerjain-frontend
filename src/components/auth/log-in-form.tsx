@@ -9,7 +9,7 @@ import seperator from "public/or-seperator.svg";
 const LogInForm = () => {
   return (
     <div className="flex justify-center items-center bg-[#FFFDD9] outline shadow p-8 rounded-xl drop-shadow-lg gap-8">
-      <div className="drop-shadow-lg">
+      <div className="drop-shadow-lg max-lg:hidden">
         <Image
           src={Login}
           alt="Hello! Are you ready to grow together in an inclusive workplace?"
