@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 const SignUpForm = () => {
   const form = useForm<SignUpSchemaType>({
@@ -35,6 +36,7 @@ const SignUpForm = () => {
 
   function onSubmit(values: z.infer<typeof signUpSchema>) {
     toast(`You submitted: ${JSON.stringify(values)}`);
+    redirect("/");
   }
 
   return (

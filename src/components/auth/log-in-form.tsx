@@ -20,6 +20,7 @@ import { signInSchema, SignInSchemaType } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from 'sonner';
+import { redirect } from "next/navigation";
 
 
 const LogInForm = () => {
@@ -29,7 +30,8 @@ const LogInForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof signInSchema>) {
-    toast(`You submitted: ${JSON.stringify(values)}`)
+    toast(`You submitted: ${JSON.stringify(values)}`);
+    redirect("/");
   }
 
   return (
@@ -100,7 +102,7 @@ const LogInForm = () => {
                   className="w-full bg-[#E3DB00] text-black rounded-full"
                   type="submit"
                 >
-                  Sign Up
+                  Log In
                 </Button>
                 <Image src={seperator} alt="or"></Image>
                 <Button
