@@ -37,6 +37,7 @@ export interface Credentials {
   }
   
   export interface SignUpFormInput {
+    nama: string;
     username: string;
     email: string;
     password: string;

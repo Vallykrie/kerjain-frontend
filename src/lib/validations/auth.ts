@@ -10,7 +10,11 @@ export const signInSchema = z.object({
   }),
 }) satisfies z.ZodType<SignInFormInput>;
 
+
 export const signUpSchema = z.object({
+  nama: z.string().min(3, {
+    message: "Nama must be at least 3 characters long",
+  }),
   username: z.string().min(3, {
     message: "Username must be at least 3 characters long",
   }),
@@ -28,6 +32,5 @@ export const signUpSchema = z.object({
   path: ["confirmPassword"],
 }) satisfies z.ZodType<SignUpFormInput>;
 
-// Infer types from schemas
 export type SignInSchemaType = z.infer<typeof signInSchema>;
 export type SignUpSchemaType = z.infer<typeof signUpSchema>;
