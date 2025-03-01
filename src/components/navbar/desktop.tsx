@@ -5,7 +5,7 @@ import Link from "next/link";
 import { navLinks } from "./data";
 import { Button } from "../ui/button";
 
-const DesktopNav: React.FC = () => {
+const DesktopNav = () => {
   const linkClass = "hover:drop-shadow-[0_0px_10px_rgba(255,255,255,1)]";
 
   return (
