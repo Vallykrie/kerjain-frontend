@@ -40,7 +40,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="flex justify-center items-center bg-[#DADFF0] outline shadow p-8 rounded-xl drop-shadow-lg gap-8">
+    <div className="flex justify-center items-center bg-[#FEFBA7] outline shadow p-8 rounded-xl drop-shadow-lg gap-8">
       <div className="drop-shadow-lg max-lg:hidden">
         <Image
           src={Signup}
@@ -50,9 +50,9 @@ const SignUpForm = () => {
         />
       </div>
       <div className="flex justify-center items-center w-[500px] flex-col">
-        <div className="mb-12 w-full flex justify-center items-center flex-col">
-          <h1 className="font-extrabold text-3xl">Create an Account</h1>
-          <p className="text-sm">
+        <div className="mb-4 w-full flex justify-center items-center flex-col space-y-4">
+          <h1 className="font-extrabold text-5xl">Sign Up</h1>
+          <p className="text-lg">
             Sudah punya akun?&nbsp;
             <Link href={"/login"} className="underline">
               Log In sekarang!
@@ -61,102 +61,104 @@ const SignUpForm = () => {
         </div>
         <div className="w-full text-[#515151]">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-              <FormField
-                control={form.control}
-                name="nama"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nama Lengkap</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="username"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Kata Sandi</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Konfirmasi Kata Sandi</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="space-y-6 mt-6 w-full">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <div>
+                <FormField
+                  control={form.control}
+                  name="nama"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nama Lengkap</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="username"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Kata Sandi</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Konfirmasi Kata Sandi</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="space-y-2 w-full">
                 <Button
                   type="submit"
                   variant="default"
-                  className="w-full bg-[#072689] rounded-full"
+                  className="w-full bg-blue_primary text-white rounded-xl h-12 font-semibold text-xl"
                 >
                   Sign Up
                 </Button>
@@ -164,7 +166,7 @@ const SignUpForm = () => {
                 <Button
                   type="submit"
                   variant="default"
-                  className="w-full bg-white text-black rounded-full"
+                  className="w-full bg-white text-black rounded-xl h-12 font-semibold text-xl"
                 >
                   Sign In with Google
                 </Button>

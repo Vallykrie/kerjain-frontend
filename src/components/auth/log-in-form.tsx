@@ -19,9 +19,8 @@ import {
 import { signInSchema, SignInSchemaType } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import { redirect } from "next/navigation";
-
 
 const LogInForm = () => {
   const form = useForm<SignInSchemaType>({
@@ -35,7 +34,7 @@ const LogInForm = () => {
   }
 
   return (
-    <div className="flex justify-center items-center bg-[#FFFDD9] outline shadow p-8 rounded-xl drop-shadow-lg gap-8">
+    <div className="flex justify-center items-center bg-[#FEFBA7] outline shadow p-8 rounded-xl drop-shadow-lg gap-8">
       <div className="drop-shadow-lg max-lg:hidden">
         <Image
           src={Login}
@@ -45,61 +44,63 @@ const LogInForm = () => {
         />
       </div>
       <div className="flex justify-center items-center w-[500px] flex-col">
-        <div className="mb-12 w-full flex justify-center items-center flex-col">
-          <h1 className="font-extrabold text-3xl">Create an Account</h1>
-          <p className="text-sm">
-            Sudah punya akun?&nbsp;
+        <div className="mb-12 w-full flex justify-center items-center flex-col space-y-4">
+          <h1 className="font-extrabold text-5xl">Log In</h1>
+          <p className="text-lg">
+            Belum punya akun?&nbsp;
             <Link href={"/login"} className="underline">
-              Log In sekarang!
+              Daftar sekarang!
             </Link>
           </p>
         </div>
         <div className="w-full text-[#515151]">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-16"> 
+              <div className="space-y-2">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Kata Sandi</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder=""
-                        {...field}
-                        className="bg-white outline"
-                      />
-                    </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Kata Sandi</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder=""
+                          {...field}
+                          className="bg-[#EBEEFB] outline"
+                        />
+                      </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-              <div className="space-y-6 mt-12 w-full">
+              <div className="space-y-2 w-full">
                 <Button
                   variant="default"
-                  className="w-full bg-[#E3DB00] text-black rounded-full"
+                  className="w-full bg-blue_primary text-white rounded-xl h-12 font-semibold text-xl"
                   type="submit"
                 >
                   Log In
@@ -107,7 +108,7 @@ const LogInForm = () => {
                 <Image src={seperator} alt="or"></Image>
                 <Button
                   variant="default"
-                  className="w-full bg-white text-black rounded-full"
+                  className="w-full bg-white text-black rounded-xl h-12 font-semibold text-xl"
                 >
                   Sign In with Google
                 </Button>

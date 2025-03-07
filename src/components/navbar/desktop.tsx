@@ -19,10 +19,10 @@ const DesktopNav = () => {
       </div>
       <div className="flex-none justify-center items-center flex space-x-12 max-lg:hidden">
         <Link href="/login">
-          <Button variant="outline" className="outline-[#05195B] outline text-[#05195B] bg-white">Login</Button>
+          <Button variant="outline" className="outline-[#05195B] outline text-[#05195B] bg-white rounded-full">Login</Button>
         </Link>
         <Link href="/signup">
-          <Button variant="default" className="bg-[#072689]">Sign Up</Button>
+          <Button variant="default" className="bg-[#072689] rounded-full">Sign Up</Button>
         </Link>
       </div>
     </>
