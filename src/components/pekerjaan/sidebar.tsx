@@ -5,7 +5,6 @@ import { ChevronDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 
-// Define types for section keys
 type SectionKey =
   | "prioritaskan"
   | "jenisDisabilitas"
@@ -14,12 +13,10 @@ type SectionKey =
   | "tipePekerjaan"
   | "kebijakanKerja";
 
-// Define type for open sections state
 type OpenSectionsState = {
   [key in SectionKey]: boolean;
 };
 
-// Define type for selected filters
 interface SelectedFilters {
   prioritaskan: string;
   jenisDisabilitas: string[];
@@ -30,7 +27,6 @@ interface SelectedFilters {
 }
 
 const Filter: React.FC = () => {
-  // State for accordion sections
   const [openSections, setOpenSections] = useState<OpenSectionsState>({
     prioritaskan: true,
     jenisDisabilitas: true,
@@ -40,7 +36,6 @@ const Filter: React.FC = () => {
     kebijakanKerja: true,
   });
 
-  // Toggle accordion section
   const toggleSection = (section: SectionKey): void => {
     setOpenSections({
       ...openSections,
@@ -48,7 +43,6 @@ const Filter: React.FC = () => {
     });
   };
 
-  // Selected filter values
   const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>({
     prioritaskan: "Paling Relevan",
     jenisDisabilitas: ["Tuna Rungu"],
@@ -58,13 +52,10 @@ const Filter: React.FC = () => {
     kebijakanKerja: [],
   });
 
-  // Handle checkbox change
   const handleCheckboxChange = (section: SectionKey, value: string): void => {
     setSelectedFilters((prev) => {
-      // Get the current values for this section
       const sectionValues = [...prev[section]];
 
-      // Toggle the value
       const newValues = sectionValues.includes(value)
         ? sectionValues.filter((item) => item !== value)
         : [...sectionValues, value];
@@ -76,7 +67,6 @@ const Filter: React.FC = () => {
     });
   };
 
-  // Handle priority button click
   const handlePriorityClick = (value: string): void => {
     setSelectedFilters((prev) => ({
       ...prev,
@@ -84,18 +74,15 @@ const Filter: React.FC = () => {
     }));
   };
 
-  // Helper to check if a value is selected
   const isSelected = (section: SectionKey, value: string): boolean => {
     return selectedFilters[section].includes(value);
   };
 
-  // Check if priority button is selected
   const isPrioritySelected = (value: string): boolean =>
     selectedFilters.prioritaskan === value;
 
   return (
     <div className="w-full max-w-sm border rounded-lg bg-white">
-      {/* Prioritaskan Section */}
       <div className="border-b">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
@@ -139,7 +126,6 @@ const Filter: React.FC = () => {
         )}
       </div>
 
-      {/* Jenis Disabilitas Section */}
       <div className="border-b">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
@@ -164,7 +150,7 @@ const Filter: React.FC = () => {
             ].map((option) => (
               <div key={option} className="flex items-center space-x-2">
                 <Checkbox
-                className="border-blue_primary data-[state=checked]:bg-blue_primary"
+                  className="border-blue_primary data-[state=checked]:bg-blue_primary"
                   id={`disabilitas-${option}`}
                   checked={isSelected("jenisDisabilitas", option)}
                   onCheckedChange={() =>
@@ -183,7 +169,6 @@ const Filter: React.FC = () => {
         )}
       </div>
 
-      {/* Tingkat Pendidikan Section */}
       <div className="border-b">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
@@ -210,7 +195,7 @@ const Filter: React.FC = () => {
             ].map((option) => (
               <div key={option} className="flex items-center space-x-2">
                 <Checkbox
-                className="border-blue_primary data-[state=checked]:bg-blue_primary"
+                  className="border-blue_primary data-[state=checked]:bg-blue_primary"
                   id={`pendidikan-${option}`}
                   checked={isSelected("tingkatPendidikan", option)}
                   onCheckedChange={() =>
@@ -229,7 +214,6 @@ const Filter: React.FC = () => {
         )}
       </div>
 
-      {/* Pengalaman Kerja Section */}
       <div className="border-b">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
@@ -255,7 +239,7 @@ const Filter: React.FC = () => {
             ].map((option) => (
               <div key={option} className="flex items-center space-x-2">
                 <Checkbox
-                className="border-blue_primary data-[state=checked]:bg-blue_primary"
+                  className="border-blue_primary data-[state=checked]:bg-blue_primary"
                   id={`pengalaman-${option}`}
                   checked={isSelected("pengalamanKerja", option)}
                   onCheckedChange={() =>
@@ -274,7 +258,6 @@ const Filter: React.FC = () => {
         )}
       </div>
 
-      {/* Tipe Pekerjaan Section */}
       <div className="border-b">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
@@ -293,7 +276,7 @@ const Filter: React.FC = () => {
             {["Penuh Waktu", "Kontrak", "Magang", "Freelance"].map((option) => (
               <div key={option} className="flex items-center space-x-2">
                 <Checkbox
-                className="border-blue_primary data-[state=checked]:bg-blue_primary"
+                  className="border-blue_primary data-[state=checked]:bg-blue_primary"
                   id={`tipe-${option}`}
                   checked={isSelected("tipePekerjaan", option)}
                   onCheckedChange={() =>
@@ -312,7 +295,6 @@ const Filter: React.FC = () => {
         )}
       </div>
 
-      {/* Kebijakan Kerja Section */}
       <div>
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
@@ -335,7 +317,7 @@ const Filter: React.FC = () => {
             ].map((option) => (
               <div key={option} className="flex items-center space-x-2">
                 <Checkbox
-                className="border-blue_primary data-[state=checked]:bg-blue_primary"
+                  className="border-blue_primary data-[state=checked]:bg-blue_primary"
                   id={`kebijakan-${option}`}
                   checked={isSelected("kebijakanKerja", option)}
                   onCheckedChange={() =>
