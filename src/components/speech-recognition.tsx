@@ -42,19 +42,17 @@ export default function VoiceSearch() {
   const router = useRouter();
 
   useEffect(() => {
-    // Check if browser supports SpeechRecognition
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
       setIsSupported(false);
       return;
     }
 
-    // Initialize speech recognition
     const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognitionAPI) {
       recognitionRef.current = new SpeechRecognitionAPI();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = true;
-      recognitionRef.current.lang = 'en-US';
+      recognitionRef.current.lang = 'id-ID';
       
       recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
         const transcript = Array.from(event.results)
@@ -98,7 +96,6 @@ export default function VoiceSearch() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchText.trim()) {
-      // Route to search results page with query parameter
       router.push(`/search?q=${encodeURIComponent(searchText.trim())}`);
     }
   };

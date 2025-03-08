@@ -15,7 +15,7 @@ import photo from "public/cardPhoto.png";
 
 const Layanan = () => {
   return (
-    <div className="bg-white flex relative flex-col justify-start items-center h-screen p-32 space-y-20">
+    <div className="bg-white flex relative flex-col justify-start items-center h-screen px-32 py-16 space-y-20">
       <div className="absolute top-0 left-5 h-1/2">
         <Image src={decoration1} alt=""></Image>
       </div>

@@ -115,15 +115,12 @@ export default function NewsCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const itemsPerPage = 4;
 
-  // Calculate total number of pages
   const totalPages = Math.ceil(newsItems.length / itemsPerPage);
 
-  // Function to handle dot indicator click
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
   };
 
-  // Function to get the visible news items for the current page
   const getVisibleItems = () => {
     const startIndex = activeIndex * itemsPerPage;
     return newsItems.slice(startIndex, startIndex + itemsPerPage);
@@ -131,8 +128,6 @@ export default function NewsCarousel() {
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4">
-
-      {/* News Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {getVisibleItems().map((item) => (
           <Link href={`/news/${item.id}`} key={item.id}>
@@ -144,10 +139,9 @@ export default function NewsCarousel() {
                     alt={item.title}
                     className="object-cover w-full h-full"
                     onError={(e) => {
-                      // Fallback for missing images
                       const target = e.target as HTMLImageElement;
                       target.src =
-                        "https://via.placeholder.com/400x240?text=News+Image";
+                        "https://placehold.co/400x240";
                     }}
                   />
                 </div>
@@ -167,7 +161,6 @@ export default function NewsCarousel() {
         ))}
       </div>
 
-      {/* Dot Indicators - Dynamic based on data length */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-8 space-x-2">
           {Array.from({ length: totalPages }).map((_, index) => (

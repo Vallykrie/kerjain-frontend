@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "@/components/navbar/navbar";
-import VoiceSearch from "@/components/speech-recognition";
+// import VoiceSearch from "@/components/speech-recognition";
 
 const Komunitas = () => {
   return (
@@ -9,7 +9,7 @@ const Komunitas = () => {
       <div className="h-[calc(100vh-160px)] w-full flex justify-center items-center font-extrabold text-6xl ">
         CommIn
       </div>
-      <VoiceSearch />
+      {/* <VoiceSearch /> */}
     </div>
   );
 };

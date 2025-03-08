@@ -8,20 +8,19 @@ import { Testimonial } from "@/types/home";
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
-  autoSlideInterval?: number; // Time in ms between auto slides
-  showControls?: boolean; // Option to show/hide arrow controls
-  showIndicators?: boolean; // Option to show/hide dot indicators
+  autoSlideInterval?: number;
+  showArrow?: boolean;
+  showDot?: boolean;
 }
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
   testimonials,
   autoSlideInterval = 5000,
-  showControls = true,
-  showIndicators = true,
+  showArrow: showControls = true,
+  showDot: showIndicators = true,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Automatic sliding
   useEffect(() => {
     if (autoSlideInterval > 0) {
       const interval = setInterval(() => {
@@ -48,23 +47,18 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 
   return (
     <div className="relative h-96 w-full">
-      {/* Cards */}
       <div className="relative h-full w-full overflow-hidden flex items-center justify-center">
         {testimonials.map((testimonial, index) => {
-          // Calculate position based on active index
           let position = index - activeIndex;
           if (position < -1) position += testimonials.length;
           if (position > 1) position -= testimonials.length;
 
-          // Calculate z-index
           const zIndex =
             position === 0 ? 30 : position === -1 || position === 1 ? 20 : 10;
 
-          // Calculate opacity
           const opacity =
-            position === 0 ? 1 : position === -1 || position === 1 ? 0.7 : 0.4;
+            position === 0 ? 1 : position === -1 || position === 1 ? 0.7 : 0.0;
 
-          // Calculate transform
           let transform = "";
           if (position === 0) {
             transform = "scale(1) translateX(0)";
@@ -74,9 +68,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
             transform = "scale(0.85) translateX(-50%)";
           } else if (position === 2 || position === -2) {
             transform = "scale(0.85) translateX(0)";
-            return null; // Hide cards that are too far
+            return null;
           } else {
-            return null; // Hide cards that are too far
+            return null;
           }
 
           return (
@@ -102,9 +96,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
                 </h3>
                 <p className="text-gray-700 mb-4">{testimonial.quote}</p>
                 <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-2xl text-yellow-400">
-                      {i < testimonial.rating ? "★" : "☆"}
+                  {[...Array(5)].map((_, index) => (
+                    <span key={index} className="text-2xl text-yellow-400">
+                      {index < testimonial.rating ? "★" : "☆"}
                     </span>
                   ))}
                 </div>
@@ -114,7 +108,6 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
         })}
       </div>
 
-      {/* Navigation buttons */}
       {showControls && (
         <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between px-4 z-40">
           <Button

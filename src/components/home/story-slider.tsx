@@ -48,7 +48,6 @@ export default function TestimonialSlider() {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="flex items-center gap-6">
-        {/* Testimonial Photo with Circle Crop */}
         <div className="relative shrink-0">
           <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-blue-900">
             <img 
@@ -59,12 +58,11 @@ export default function TestimonialSlider() {
               className="object-cover w-full h-full"
               onError={(e) => {
                 // Fallback for missing images
-                (e.target as HTMLImageElement).src = "https://via.placeholder.com/256";
+                (e.target as HTMLImageElement).src = "https://placehold.co/100x100";
               }}
             />
           </div>
-          
-          {/* Name and Position overlay */}
+
           <div className="absolute bottom-0 left-0 right-0 text-center bg-white bg-opacity-90 py-2 rounded-b-full">
             <h3 className="text-2xl font-bold text-gray-800">{currentTestimonial.name} ({currentTestimonial.age})</h3>
             <p className="text-lg text-gray-600">
@@ -74,7 +72,6 @@ export default function TestimonialSlider() {
           </div>
         </div>
 
-        {/* Testimonial Text Bubble */}
         <div className="relative flex-1">
           <Card className="shadow-lg">
             <CardContent className="p-6">
@@ -83,8 +80,7 @@ export default function TestimonialSlider() {
               </p>
             </CardContent>
           </Card>
-          
-          {/* Next Button */}
+
           <Button 
             onClick={handleNext}
             variant="outline" 
