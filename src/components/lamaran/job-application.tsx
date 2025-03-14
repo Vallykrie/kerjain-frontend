@@ -39,7 +39,7 @@ export default function JobApplicationPage() {
   const [certificate, setCertificate] = useState<UploadedFile | null>(null);
   
   // Form state
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
   const [errors, setErrors] = useState<Record<string, string>>({});
   
   // Refs for file inputs
@@ -49,10 +49,10 @@ export default function JobApplicationPage() {
   
   // Check authentication status
   useEffect(() => {
-    if (!isAuthenticated && !isSubmitting) {
+    if (!isAuthenticated) {
       router.push('/login?redirect=/jobs/' + jobId);
     }
-  }, [isAuthenticated, jobId, router, isSubmitting]);
+  }, [isAuthenticated, jobId, router]);
 
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -398,7 +398,7 @@ export default function JobApplicationPage() {
             <Button
               type="submit"
               className="bg-blue-700 hover:bg-blue-800 text-white"
-              disabled={isSubmitting}
+        
             >
               Lanjut
               <ChevronRight className="ml-2 h-4 w-4" />
