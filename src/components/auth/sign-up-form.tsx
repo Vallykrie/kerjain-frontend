@@ -19,10 +19,15 @@ import { signUpSchema, SignUpSchemaType } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useAuth } from "@/lib/auth-context";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 
 const SignUpForm = () => {
+  const { register, isLoading, error } = useAuth();
+  const router = useRouter();
+  
   const form = useForm<SignUpSchemaType>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -33,14 +38,28 @@ const SignUpForm = () => {
       confirmPassword: "",
     },
   });
-
-  function onSubmit(values: z.infer<typeof signUpSchema>) {
-    toast(`You submitted: ${JSON.stringify(values)}`);
-    redirect("/");
+  
+  async function onSubmit(values: z.infer<typeof signUpSchema>) {
+    
+    try {
+      await register(values);
+      toast.success("Registration successful! Please log in.");
+      router.push('/login');
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      toast.error(`Failed to create account: ${errorMessage}`);
+    }
   }
 
+  React.useEffect(() => {
+    if (error) {
+      toast.error(error.message || "Registration failed. Please try again.");
+    }
+  }, [error]);
+
   return (
-    <div className="flex justify-center items-center bg-[#FEFBA7] outline shadow p-8 rounded-xl drop-shadow-lg gap-8">
+    <div className="flex justify-center items-center bg-[#FEFBA7] outline shadow p-8 rounded-xl drop-shadow-lg gap-8 max-[500px]:p-4 max-[500px]:gap-4 " >
       <div className="drop-shadow-lg max-lg:hidden">
         <Image
           src={Signup}
@@ -49,26 +68,26 @@ const SignUpForm = () => {
           style={{ width: "500px" }}
         />
       </div>
-      <div className="flex justify-center items-center w-[500px] flex-col">
+      <div className="flex justify-center items-center w-[500px] flex-col max-lg:w-11/12">
         <div className="mb-4 w-full flex justify-center items-center flex-col space-y-4">
-          <h1 className="font-extrabold text-5xl">Sign Up</h1>
-          <p className="text-lg">
+          <h1 className="font-extrabold text-5xl max-[500px]:text-3xl">Sign Up</h1>
+          <p className="text-lg max-[500px]:text-sm max-[400px]:text-xs">
             Sudah punya akun?&nbsp;
             <Link href={"/login"} className="underline">
               Log In sekarang!
             </Link>
           </p>
         </div>
-        <div className="w-full text-[#515151]">
+        <div className="w-full text-[#515151] max-[500px]:text-sm">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-[500px]:space-y-4">
               <div>
                 <FormField
                   control={form.control}
                   name="nama"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nama Lengkap</FormLabel>
+                      <FormLabel className="max-[500px]:text-sm">Nama Lengkap</FormLabel>
                       <FormControl>
                         <Input
                           type="text"
@@ -86,7 +105,7 @@ const SignUpForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="max-[500px]:text-sm">Email</FormLabel>
                       <FormControl>
                         <Input
                           type="email"
@@ -104,7 +123,7 @@ const SignUpForm = () => {
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel className="max-[500px]:text-sm">Username</FormLabel>
                       <FormControl>
                         <Input
                           type="username"
@@ -122,7 +141,7 @@ const SignUpForm = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Kata Sandi</FormLabel>
+                      <FormLabel className="max-[500px]:text-sm">Kata Sandi</FormLabel>
                       <FormControl>
                         <Input
                           type="password"
@@ -140,7 +159,7 @@ const SignUpForm = () => {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Konfirmasi Kata Sandi</FormLabel>
+                      <FormLabel className="max-[500px]:text-sm">Konfirmasi Kata Sandi</FormLabel>
                       <FormControl>
                         <Input
                           type="password"
@@ -159,14 +178,19 @@ const SignUpForm = () => {
                   type="submit"
                   variant="default"
                   className="w-full bg-blue_primary text-white rounded-xl h-12 font-semibold text-xl"
+                  disabled={isLoading}
                 >
-                  Sign Up
+                  {isLoading ? "Loading..." : "Sign Up"}
                 </Button>
                 <Image src={seperator} alt="or"></Image>
                 <Button
-                  type="submit"
+                  type="button"
                   variant="default"
                   className="w-full bg-white text-black rounded-xl h-12 font-semibold text-xl"
+                  disabled={isLoading}
+                  onClick={() => {
+                    toast.info("Google login not implemented");
+                  }}
                 >
                   Sign In with Google
                 </Button>

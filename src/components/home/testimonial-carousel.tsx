@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Testimonial } from "@/types/home";
+import { Testimonial } from "@/lib/types/home";
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
@@ -129,7 +129,6 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
         </div>
       )}
 
-      {/* Dots navigation */}
       {showIndicators && (
         <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 z-40">
           {testimonials.map((_, index) => (

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import { NewsItem } from "@/types/home";
+import { NewsItem } from "@/lib/types/home";
 
 const newsItems: NewsItem[] = [
   {

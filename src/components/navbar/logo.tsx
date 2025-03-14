@@ -3,10 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/lib/auth-context";
 
 const Logo: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   return (
-    <Link href="/">
+    <Link href="/" className={isAuthenticated ? "" : "w-[250px]"}>
       <Image
         src="/logo1.png"
         alt="logo"

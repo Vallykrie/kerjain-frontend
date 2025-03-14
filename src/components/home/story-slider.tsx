@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
-import { Story } from '@/types/home';
+import { Story } from '@/lib/types/home';
 
 const testimonials: Story[] = [
   {
@@ -47,7 +47,7 @@ export default function TestimonialSlider() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6 max-lg:flex-col">
         <div className="relative shrink-0">
           <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-blue-900">
             <img 
@@ -57,7 +57,6 @@ export default function TestimonialSlider() {
               height={256}
               className="object-cover w-full h-full"
               onError={(e) => {
-                // Fallback for missing images
                 (e.target as HTMLImageElement).src = "https://placehold.co/100x100";
               }}
             />

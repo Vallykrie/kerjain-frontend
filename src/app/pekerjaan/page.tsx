@@ -1,36 +1,25 @@
 import React from "react";
 import Navbar from "@/components/navbar/navbar";
 import Filter from "@/components/pekerjaan/sidebar";
-import JobCardGrid from "@/components/pekerjaan/grid";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import JobCardGrid from "@/components/pekerjaan/job-card";
+import VoiceSearch from "@/components/speech-recognition";
 
 const Pekerjaan = () => {
   return (
-    <div className="bg-white min-h-screen">
+    <main className="bg-white min-h-screen">
       <Navbar></Navbar>
-      <div className="h-full p-16 flex flex-col space-y-16">
-        <div className="flex flex-row space-x-2">
-          <Input
-            className="bg-[#F0F3F9] border-[#F0F3F9] h-14 text-lg"
-            placeholder="Cari Nama Pekerjaan, Skill, dan Perusahaan"
-          ></Input>
-          <Input
-            className="bg-[#F0F3F9] border-[#F0F3F9] h-14 text-lg"
-            placeholder="Cari Lokasi"
-          ></Input>
-          <Button className="w-1/3 h-14 font-semibold text-xl rounded-xl bg-[#05195B] hover:bg-blue-900">
-            Cari
-          </Button>
-        </div>
-        <div className="flex space-x-10 flex-row justify-start items-start">
-          <aside className="w-1/4">
+      <div className="h-full p-16 flex flex-col space-y-16 max-lg:px-4">
+        <VoiceSearch></VoiceSearch>
+        <section className="flex space-x-10 flex-row justify-start items-start max-lg:flex-col max-lg:space-y-16 max-lg:justify-center max-lg:space-x-0">
+          <aside className="w-1/4 max-lg:w-full max-lg:flex max-lg:justify-center">
             <Filter />
           </aside>
-          <JobCardGrid />
-        </div>
+          <section className="max-lg:w-full max-lg:flex max-lg:justify-center">
+            <JobCardGrid />
+          </section>
+        </section>
       </div>
-    </div>
+    </main>
   );
 };
 

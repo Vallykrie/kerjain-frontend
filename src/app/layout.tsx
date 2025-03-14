@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { ApiProvider } from "@/lib/api-provider";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import Navbar from "@/components/navbar/navbar";
 import { Toaster } from "sonner";
 import LiveChat from "@/components/live-chat/tawk-to-chat";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,8 @@ export default function RootLayout({
       >
         <Toaster />
         <LiveChat />
-        {children}
+        <ApiProvider>{children}</ApiProvider>
+        <Footer />
       </body>
     </html>
   );

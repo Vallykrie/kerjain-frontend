@@ -1,15 +1,23 @@
-import React from "react";
+import { AdvertisementSlider } from "@/components/program/advertisement";
+import { BootcampGrid } from "@/components/program/bootcamp-grid";
+import { advertisementData, bootcampData } from "@/components/program/mockData";
 import Navbar from "@/components/navbar/navbar";
+import VoiceSearch from "@/components/speech-recognition";
 
-const Programn = () => {
+export default function Programs() {
   return (
-    <div>
-      <Navbar></Navbar>
-      <div className="h-[calc(100vh-160px)] w-full flex justify-center items-center font-extrabold text-6xl ">
-        EduIn
-      </div>
-    </div>
+    <main className="min-h-screen flex flex-col">
+      <Navbar />
+      <section className="w-full">
+        <AdvertisementSlider
+          advertisements={advertisementData}
+          autoSlideInterval={5000}
+        />
+      </section>
+      <section className="container mx-auto py-16 px-4 space-y-4">
+        <VoiceSearch></VoiceSearch>
+        <BootcampGrid bootcamps={bootcampData} />
+      </section>
+    </main>
   );
-};
-
-export default Programn;
+}
