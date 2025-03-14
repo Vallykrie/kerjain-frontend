@@ -11,6 +11,15 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Allow unused parameters that are named 'value' or 'onChange'
+      "@typescript-eslint/no-unused-vars": ["error", {
+        "argsIgnorePattern": "^(value|onChange)$",
+        "varsIgnorePattern": "^(value|onChange)$"
+      }]
+    }
+  }
 ];
 
 export default eslintConfig;
