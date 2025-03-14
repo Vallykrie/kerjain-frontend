@@ -87,7 +87,7 @@ const FormWrapper: React.FC = () => {
       <div className="mt-8">
         {currentStep === 'personal' && (
           <PersonalForm 
-            defaultValues={formState} 
+      
             onSubmit={handlePersonalFormSubmit} 
           />
         )}
